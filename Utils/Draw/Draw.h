@@ -12,7 +12,7 @@ enum class FontSize : int {
 class Draw {
 public: //Main
 	void Setup();
-	void ChangeBrightness(int Brightness);
+	void ChangeBrightness(uint8_t Brightness);
 	void Update(bool Force);
 	void Clear();
 	void SetPixel(int x, int y);
