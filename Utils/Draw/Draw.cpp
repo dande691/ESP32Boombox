@@ -38,11 +38,10 @@ void Draw::Setup() { //This should have all the stuff we need to make it work, "
 	gI2C.WriteRegister(static_cast<uint8_t>(I2CDeviceAdresses::SSD1306), static_cast<uint8_t>(SSD1306Adresses::COMMAND), static_cast<uint8_t>(SSD1306Commands::DISPLAY_ON)); //Turn the display on.
 }
 
-void Draw::ChangeBrightness(int Brightness) { //0-255.
-	int ClampedBrightness = gMath.ClampInt(Brightness, 0, 255); //Clamp the brightness to 0-255.
+void Draw::ChangeBrightness(uint8_t Brightness) { //0-255.
 	gI2C.WriteRegister(static_cast<uint8_t>(I2CDeviceAdresses::SSD1306), static_cast<uint8_t>(SSD1306Adresses::COMMAND), static_cast<uint8_t>(SSD1306Commands::DISPLAY_OFF));
 	gI2C.WriteRegister(static_cast<uint8_t>(I2CDeviceAdresses::SSD1306), static_cast<uint8_t>(SSD1306Adresses::COMMAND), static_cast<uint8_t>(SSD1306Commands::SET_CONTRAST));
-	gI2C.WriteRegister(static_cast<uint8_t>(I2CDeviceAdresses::SSD1306), static_cast<uint8_t>(SSD1306Adresses::COMMAND), static_cast<uint8_t>(ClampedBrightness));
+	gI2C.WriteRegister(static_cast<uint8_t>(I2CDeviceAdresses::SSD1306), static_cast<uint8_t>(SSD1306Adresses::COMMAND), Brightness);
 	gI2C.WriteRegister(static_cast<uint8_t>(I2CDeviceAdresses::SSD1306), static_cast<uint8_t>(SSD1306Adresses::COMMAND), static_cast<uint8_t>(SSD1306Commands::DISPLAY_ON));
 }
 
